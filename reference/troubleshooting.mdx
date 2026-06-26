@@ -1,7 +1,7 @@
 ---
-title: "Troubleshooting Common Documentation Build Issues"
+title: "Troubleshooting Common Google Documentation Hosting Issues"
 sidebarTitle: "Troubleshooting"
-description: "Diagnose and fix common problems with your Google Docs site, including build failures, missing pages, and navigation issues."
+description: "Diagnose and fix common problems with your Google docs site, including build failures, missing pages, broken images, and navigation issues."
 ---
 
 This page covers the most common issues you might encounter when hosting your docs with Google and how to resolve them.
@@ -12,13 +12,7 @@ This page covers the most common issues you might encounter when hosting your do
   <Accordion title="My docs won't deploy after pushing">
     The most common cause of a failed deployment is a mismatch between the page slugs listed in `docs.json` and the `.mdx` files that actually exist in your repository. Check that every slug in your `navigation` array has a corresponding file.
 
-    You can catch these errors before you push by running the validator locally:
-
-    ```bash
-    mint validate
-    ```
-
-    This command checks your `docs.json` configuration and flags any missing files, invalid slugs, or structural problems.
+    Open `docs.json` and verify that each entry in every `pages` array matches the actual file path in your repository, without the `.mdx` extension. For example, a file at `guides/quickstart.mdx` must be listed as `"guides/quickstart"`.
   </Accordion>
 
   <Accordion title="I get a 'page not found' error">
@@ -81,14 +75,14 @@ This page covers the most common issues you might encounter when hosting your do
   </Accordion>
 
   <Accordion title="Components like <Note> aren't rendering">
-    Mintlify components such as `<Note>`, `<Warning>`, `<Tip>`, and `<Card>` only work in files with the **`.mdx` extension**. If your file ends in `.md`, rename it to `.mdx` and update the corresponding slug in `docs.json`.
+    Interactive components such as `<Note>`, `<Warning>`, `<Tip>`, and `<Card>` only work in files with the **`.mdx` extension**. If your file ends in `.md`, rename it to `.mdx` and update the corresponding slug in `docs.json`.
   </Accordion>
 </AccordionGroup>
 
 ## Getting More Help
 
-If you've worked through the steps above and are still running into issues, our support team is ready to help. You can also find in-depth reference material and component documentation in the [Mintlify documentation](https://mintlify.com/docs).
+If you've worked through the steps above and are still running into issues, our support team is ready to help. Reach out from the Google dashboard and include a description of the problem along with any relevant excerpts from your `docs.json` file.
 
 <Note>
-  Run `mint validate` in your local repo to catch most configuration errors before you push. It's the fastest way to identify mismatched slugs, missing files, and `docs.json` structural problems.
+  The fastest way to catch most configuration errors before they cause a failed deployment is to carefully compare every slug in your `docs.json` `pages` arrays against the actual file paths in your repository — paying attention to subdirectory names, spelling, and letter case.
 </Note>

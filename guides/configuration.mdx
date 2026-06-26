@@ -1,5 +1,5 @@
 ---
-title: "Configure Navigation, Branding, and Site Settings"
+title: "Configuring Navigation, Branding, and Site Settings"
 sidebarTitle: "Configuration"
 description: "Learn how to customize your documentation site's navigation, colors, logo, and other settings using the docs.json configuration file."
 ---
@@ -74,11 +74,11 @@ Navigation is built from **groups**, each containing an ordered list of page pat
             ]
           },
           {
-            "tab": "API Reference",
+            "tab": "Guides",
             "groups": [
               {
-                "group": "Endpoints",
-                "pages": ["api-reference/overview"]
+                "group": "How-To Guides",
+                "pages": ["guides/overview", "guides/configuration", "guides/deployment"]
               }
             ]
           }
@@ -116,7 +116,7 @@ Use the `colors`, `logo`, and `favicon` fields to match your docs site to your b
 
 ## Themes
 
-Google Docs ships with several built-in themes that change the overall visual style of your site. Set a theme using the `"theme"` field:
+Google ships with several built-in themes that change the overall visual style of your site. Set a theme using the `"theme"` field:
 
 ```json
 {
