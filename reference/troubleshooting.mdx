@@ -1,0 +1,94 @@
+---
+title: "Troubleshooting Common Documentation Build Issues"
+sidebarTitle: "Troubleshooting"
+description: "Diagnose and fix common problems with your Google Docs site, including build failures, missing pages, and navigation issues."
+---
+
+This page covers the most common issues you might encounter when hosting your docs with Google and how to resolve them.
+
+## Build Failures
+
+<AccordionGroup>
+  <Accordion title="My docs won't deploy after pushing">
+    The most common cause of a failed deployment is a mismatch between the page slugs listed in `docs.json` and the `.mdx` files that actually exist in your repository. Check that every slug in your `navigation` array has a corresponding file.
+
+    You can catch these errors before you push by running the validator locally:
+
+    ```bash
+    mint validate
+    ```
+
+    This command checks your `docs.json` configuration and flags any missing files, invalid slugs, or structural problems.
+  </Accordion>
+
+  <Accordion title="I get a 'page not found' error">
+    This usually means the slug in `docs.json` doesn't match the file path in your repository. Remember that slugs **do not include the `.mdx` extension**.
+
+    For example, a file at `guides/quickstart.mdx` should be listed as:
+
+    ```json
+    "guides/quickstart"
+    ```
+
+    Double-check the path, including any subdirectory names, for typos or case mismatches.
+  </Accordion>
+</AccordionGroup>
+
+## Navigation Issues
+
+<AccordionGroup>
+  <Accordion title="A page doesn't appear in the sidebar">
+    Every page you want to appear in the sidebar must be listed under a group in the `navigation` array in `docs.json`. If a file exists in your repo but isn't referenced in `docs.json`, it won't show up in the navigation.
+
+    Add the page's slug to the appropriate group:
+
+    ```json
+    {
+      "group": "Reference",
+      "pages": ["reference/faq", "reference/troubleshooting"]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="My navigation order changed unexpectedly">
+    Pages appear in your sidebar in exactly the order they are listed in `docs.json`. If the order looks wrong, open `docs.json` and reorder the entries in the `pages` array for the affected group to match the sequence you want.
+  </Accordion>
+</AccordionGroup>
+
+## Content Issues
+
+<AccordionGroup>
+  <Accordion title="My code blocks aren't rendering with syntax highlighting">
+    Syntax highlighting requires a **language tag** immediately after the opening triple backticks. Without it, the block renders as plain text.
+
+    ````md
+    ```json
+    { "key": "value" }
+    ```
+    ````
+
+    Common language tags include `bash`, `json`, `typescript`, `python`, `yaml`, and `mdx`.
+  </Accordion>
+
+  <Accordion title="Images aren't loading">
+    First, verify that the image file exists in your repository at the path you referenced. Then check that you're using an absolute path starting with `/`, which resolves relative to your repo root regardless of the current page's location:
+
+    ```md
+    ![Screenshot](/images/screenshot.png)
+    ```
+
+    Relative paths (e.g., `../images/screenshot.png`) can break when pages are nested in different subdirectories.
+  </Accordion>
+
+  <Accordion title="Components like <Note> aren't rendering">
+    Mintlify components such as `<Note>`, `<Warning>`, `<Tip>`, and `<Card>` only work in files with the **`.mdx` extension**. If your file ends in `.md`, rename it to `.mdx` and update the corresponding slug in `docs.json`.
+  </Accordion>
+</AccordionGroup>
+
+## Getting More Help
+
+If you've worked through the steps above and are still running into issues, our support team is ready to help. You can also find in-depth reference material and component documentation in the [Mintlify documentation](https://mintlify.com/docs).
+
+<Note>
+  Run `mint validate` in your local repo to catch most configuration errors before you push. It's the fastest way to identify mismatched slugs, missing files, and `docs.json` structural problems.
+</Note>

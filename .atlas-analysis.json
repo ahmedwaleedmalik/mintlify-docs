@@ -1,0 +1,32 @@
+{
+  "projectType": "general",
+  "projectName": "Google",
+  "projectDescription": "A hosted documentation site for quickly publishing and sharing product docs.",
+  "theme": "almond",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": ["introduction", "quickstart"]
+      },
+      {
+        "group": "Guides",
+        "pages": ["guides/overview", "guides/configuration", "guides/deployment"]
+      },
+      {
+        "group": "Reference",
+        "pages": ["reference/faq", "reference/troubleshooting"]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Quick documentation hosting",
+    "Customizable navigation and branding",
+    "MDX-based content authoring",
+    "Automatic deployment on push"
+  ],
+  "publicApiSurface": []
+}

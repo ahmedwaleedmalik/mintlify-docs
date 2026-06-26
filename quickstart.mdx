@@ -1,47 +1,82 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with Google Docs in Under 5 Minutes"
+sidebarTitle: "Quickstart"
+description: "Learn how to connect your private git repository and publish your first documentation site with Google Docs in five minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+This guide walks you through publishing your documentation site for the first time. By the end, you'll have a live docs site connected to your private git repository and updating automatically on every push.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Set up your repository">
+    Your documentation lives as `.mdx` files inside a git repository. If you're starting from scratch, create a new repo and add the following files at the root level:
 
-    ```bash
-    npm install your-package
+    ```text
+    my-docs/
+    ├── docs.json
+    ├── index.mdx
+    └── quickstart.mdx
     ```
+
+    You can organize pages into subdirectories as your docs grow — but a flat structure like this is all you need to get started.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Create your docs.json">
+    The `docs.json` file at the root of your repo controls your site's navigation, branding, and settings. Create one now with a minimal configuration:
 
-    ```bash
-    your-cli init
+    ```json docs.json
+    {
+      "$schema": "https://mintlify.com/docs.json",
+      "name": "My Docs",
+      "navigation": {
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["index", "quickstart"]
+          }
+        ]
+      }
+    }
     ```
+
+    The `navigation` field defines the sidebar structure your readers will see. Each entry in `pages` maps to an `.mdx` file by its path relative to the repo root (without the file extension).
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Write your first page">
+    Every page starts with a frontmatter block that sets its title and description. Here's a minimal example for `index.mdx`:
+
+    ```mdx index.mdx
+    ---
+    title: "Welcome"
+    description: "Welcome to my documentation."
+    ---
+
+    Welcome! This is my documentation site.
+    ```
+
+    You can use any standard MDX content below the frontmatter — headings, code blocks, callouts, and all Mintlify components are supported out of the box.
+  </Step>
+  <Step title="Push and publish">
+    Once your files are in place, commit and push your changes to your git remote:
 
     ```bash
-    your-cli start
+    git add .
+    git commit -m "Initial docs"
+    git push
     ```
+
+    Google Docs detects the push and automatically builds and deploys your site. Your documentation will be live at your Google Docs URL within moments — no further action required.
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  Use the `mint dev` CLI command locally to preview your docs before pushing. Run it from the root of your repo and open `http://localhost:3000` to see a live preview that hot-reloads as you edit.
 </Tip>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Configure Your Docs" href="/guides/configuration">
+    Customize your navigation, branding, colors, and more using `docs.json`
+  </Card>
+  <Card title="Deployment" href="/guides/deployment">
+    Learn how publishing works and how to manage your live site
+  </Card>
+</CardGroup>

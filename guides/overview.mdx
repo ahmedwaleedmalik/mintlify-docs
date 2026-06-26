@@ -1,0 +1,57 @@
+---
+title: "Guides Overview: Writing and Organizing Your Docs"
+sidebarTitle: "Overview"
+description: "An overview of how to write, structure, and organize your documentation site using MDX pages and the docs.json configuration file."
+---
+
+These guides walk you through every major workflow for building and maintaining your docs site. Whether you're setting up navigation, customizing your branding, or publishing for the first time, you'll find step-by-step instructions here.
+
+## Documentation Structure
+
+Every Google Docs site is built from two key pieces:
+
+- **MDX pages** — the content of your site, written in Markdown with optional React components.
+- **`docs.json`** — the configuration file that controls navigation, branding, and other site-wide settings.
+
+A typical repository looks like this:
+
+```
+my-docs/
+├── docs.json          # Site configuration
+├── index.mdx          # Landing page
+├── quickstart.mdx
+└── guides/
+    └── my-guide.mdx
+```
+
+Keep your MDX files organized in folders that mirror your navigation structure. The `docs.json` file always lives at the root of your repository.
+
+## Writing Pages
+
+Each page in your docs site is an MDX file. At the top of every file, add a frontmatter block with at least a `title` and a `description`:
+
+```mdx my-page.mdx
+---
+title: "Page Title"
+description: "What this page covers."
+---
+
+Your content here. You can use **Markdown** and <Components />.
+```
+
+The `title` appears in the browser tab and sidebar. The `description` is used for SEO and link previews. Everything below the frontmatter block is your page content — standard Markdown syntax works, and you can drop in any supported components wherever you need them.
+
+## Navigation
+
+Navigation is defined entirely inside `docs.json`. You organize pages into **groups**, and groups into optional **tabs** for multi-section sites. The sidebar your readers see is generated automatically from that configuration — you never edit it by hand.
+
+See the [Configuration guide](/guides/configuration) for a full walkthrough of navigation options.
+
+<CardGroup cols={2}>
+  <Card href="/guides/configuration" icon="sliders" title="Configuration">
+    Configure navigation and branding
+  </Card>
+  <Card href="/guides/deployment" icon="cloud-arrow-up" title="Deployment">
+    Publish your docs
+  </Card>
+</CardGroup>

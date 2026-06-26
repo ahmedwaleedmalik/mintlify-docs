@@ -1,0 +1,52 @@
+---
+title: "Deploy Your Documentation Site Automatically"
+sidebarTitle: "Deployment"
+description: "Learn how Google Docs automatically deploys your documentation whenever you push changes to your connected git repository."
+---
+
+Google Docs deploys your documentation automatically every time you push to the default branch of your connected repository. No manual steps required — your updates are live within seconds of a push.
+
+## How Deployment Works
+
+Every deployment follows the same simple flow:
+
+<Steps>
+  <Step title="Push a commit">
+    Commit your changes and push to the default branch of your connected GitHub repository (typically `main` or `master`).
+  </Step>
+  <Step title="Google Docs detects the push">
+    The GitHub App installed on your repository notifies Google Docs of the new commit automatically.
+  </Step>
+  <Step title="Your docs are built and published">
+    Google Docs builds your site and publishes the updated version within seconds. Your readers see the latest content immediately.
+  </Step>
+</Steps>
+
+## Previewing Locally
+
+Before pushing, you can preview your docs exactly as they'll appear in production by running a local development server. Make sure you have Node.js installed, then run:
+
+```bash
+npm install -g mint
+mint dev
+```
+
+Open `http://localhost:3000` in your browser to see a live preview. The local server watches your files and reloads automatically as you make changes — no restart needed.
+
+## Deployment Status
+
+You can monitor the status of every deployment from your dashboard at `https://app.mintlify.com`. The dashboard shows you whether the latest build succeeded, is in progress, or encountered an error, along with a log for troubleshooting.
+
+<Tip>
+  Bookmark your dashboard URL to quickly check deployment status after each push.
+</Tip>
+
+## Branch Behavior
+
+Only pushes to your repository's **default branch** trigger a live deployment. Commits to feature branches, pull request branches, or any other branch do not affect your published site. This means you can freely work on drafts and experiments in separate branches without risking unfinished content reaching your readers.
+
+When you're ready to publish, merge your branch into the default branch and the deployment kicks off automatically.
+
+<Warning>
+  If your docs fail to build, check that all pages listed in `docs.json` exist as `.mdx` files in your repository. A missing file is the most common cause of build failures.
+</Warning>

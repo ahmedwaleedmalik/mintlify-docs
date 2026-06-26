@@ -1,0 +1,141 @@
+---
+title: "Configure Navigation, Branding, and Site Settings"
+sidebarTitle: "Configuration"
+description: "Learn how to customize your documentation site's navigation, colors, logo, and other settings using the docs.json configuration file."
+---
+
+All site settings live in `docs.json` at the root of your repository. This page covers the most important options so you can get your site looking and navigating exactly the way you want.
+
+## Basic Configuration
+
+At minimum, your `docs.json` needs a `name`, a `colors` block, and a `navigation` block. Here's a minimal working example:
+
+```json docs.json
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "My Product",
+  "colors": {
+    "primary": "#ef7025"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": ["index", "quickstart"]
+      }
+    ]
+  }
+}
+```
+
+- **`name`** — the display name of your docs site, shown in the header and browser tab.
+- **`colors.primary`** — the accent color used for links, buttons, and highlights.
+- **`navigation`** — defines the sidebar structure (see [Navigation](#navigation) below).
+
+## Navigation
+
+Navigation is built from **groups**, each containing an ordered list of page paths (without the `.mdx` extension). For larger sites you can nest groups inside **tabs** to create a top-level navigation bar.
+
+<Tabs>
+  <Tab title="Single Section">
+    Use `groups` directly under `navigation` when all your content lives in one section:
+
+    ```json docs.json
+    {
+      "navigation": {
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Guides",
+            "pages": ["guides/overview", "guides/configuration", "guides/deployment"]
+          }
+        ]
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Multiple Sections">
+    Use `tabs` to add a top navigation bar, with each tab containing its own set of groups:
+
+    ```json docs.json
+    {
+      "navigation": {
+        "tabs": [
+          {
+            "tab": "Docs",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": ["index", "quickstart"]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Endpoints",
+                "pages": ["api-reference/overview"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Branding
+
+Use the `colors`, `logo`, and `favicon` fields to match your docs site to your brand identity:
+
+```json
+{
+  "colors": {
+    "primary": "#ef7025",
+    "light": "#eec9bc",
+    "dark": "#4fa1ab"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg"
+}
+```
+
+- **`colors.primary`** — the main accent color used across the site.
+- **`colors.light`** — accent color applied in light mode contexts.
+- **`colors.dark`** — accent color applied in dark mode contexts.
+- **`logo.light` / `logo.dark`** — separate logo files for light and dark mode. Place your logo files in a `/logo/` folder at the root of your repository.
+- **`favicon`** — the small icon shown in browser tabs.
+
+## Themes
+
+Google Docs ships with several built-in themes that change the overall visual style of your site. Set a theme using the `"theme"` field:
+
+```json
+{
+  "theme": "almond"
+}
+```
+
+Available themes:
+
+| Theme | Description |
+|---|---|
+| `almond` | Warm neutral tones |
+| `luma` | Clean, minimal light style |
+| `palm` | Tropical, high-contrast accents |
+| `willow` | Soft greens and muted earth tones |
+| `aspen` | Crisp whites with golden highlights |
+| `maple` | Rich warm reds and ambers |
+| `sequoia` | Deep forest greens and browns |
+
+<Note>
+  Changes to `docs.json` take effect on your next push to the default branch.
+</Note>

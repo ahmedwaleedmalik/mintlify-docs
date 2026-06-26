@@ -1,0 +1,65 @@
+---
+title: "Frequently Asked Questions About Google Docs Hosting"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about hosting documentation with Google Docs, including setup, deployment, and customization."
+---
+
+Find answers to the most common questions about using Google Docs to host your documentation.
+
+<AccordionGroup>
+  <Accordion title="What file formats does Google Docs support?">
+    Google Docs supports **MDX** and **Markdown** files with the `.mdx` and `.md` extensions. We recommend using `.mdx` for all new pages so you can take full advantage of interactive components and JSX elements in your content.
+  </Accordion>
+
+  <Accordion title="How do I add a new page to my docs?">
+    Create a new `.mdx` file in your repository, then add its slug to the `navigation` array in your `docs.json` file. For example, if you create `guides/getting-started.mdx`, add `"guides/getting-started"` (without the extension) to the appropriate group in `docs.json`.
+
+    ```json
+    {
+      "group": "Guides",
+      "pages": ["guides/getting-started"]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Can I use custom domains?">
+    Yes. You can configure a custom domain for your docs site from the Google dashboard. Once you add your domain and update your DNS records as instructed, your documentation will be served at your chosen address automatically.
+  </Accordion>
+
+  <Accordion title="How long does deployment take?">
+    Deployments typically complete in **under a minute** after you push a change to your connected repository. You can monitor the status of your latest deployment from the Google dashboard.
+  </Accordion>
+
+  <Accordion title="Do I need to rebuild when I change docs.json?">
+    No. Any change you push to your repository — including updates to `docs.json` — triggers an automatic deployment. There is no manual rebuild step required.
+  </Accordion>
+
+  <Accordion title="Can I password-protect my docs?">
+    Yes. Access control settings, including password protection, are available in the Google dashboard. You can restrict your entire docs site or individual sections to authenticated users only.
+  </Accordion>
+
+  <Accordion title="What is MDX?">
+    MDX is Markdown with support for **JSX components**. It lets you write standard Markdown content while also embedding interactive and styled elements — such as callouts, tabs, and cards — directly in your documentation pages. All `.mdx` files in your repo are rendered with full component support.
+  </Accordion>
+
+  <Accordion title="How do I add images?">
+    Place your image files anywhere in your repository (a top-level `/images` folder is a common convention), then reference them with an absolute path from the repo root:
+
+    ```md
+    ![Alt text](/images/screenshot.png)
+    ```
+
+    Using an absolute path (starting with `/`) ensures the image loads correctly regardless of which page or subdirectory it is referenced from.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Troubleshooting" icon="wrench" href="/reference/troubleshooting">
+    Fix common issues with your docs site.
+  </Card>
+  <Card title="Configuration" icon="sliders" href="/guides/configuration">
+    Customize your site's appearance and behavior.
+  </Card>
+</CardGroup>

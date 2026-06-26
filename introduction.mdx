@@ -1,0 +1,45 @@
+---
+title: "Google Docs: Host Your Docs from a Private Git Repo"
+sidebarTitle: "Introduction"
+description: "Google Docs lets you publish documentation directly from a private git repository. No manual deploys, no infrastructure setup required."
+---
+
+**Google Docs** is a documentation hosting platform built for teams who want their docs to live alongside their code. Connect your private git repository, push your content, and Google Docs takes care of the rest — building, hosting, and publishing your site automatically on every update. No servers to manage, no deployment pipelines to configure.
+
+## What is Google Docs?
+
+Google Docs is a documentation hosting platform that bridges the gap between your git repository and a polished, publicly shareable docs site. You write your documentation as MDX files directly in your repo. Every time you push a change, Google Docs detects it and automatically rebuilds and republishes your site — so your docs are always in sync with your code.
+
+It's designed for engineering teams, developer-focused companies, and anyone who wants documentation that's version-controlled, easy to maintain, and effortless to deploy.
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Git-Driven Publishing" icon="code-branch">
+    Docs update automatically whenever you push to your repository — no manual deploys, no CI scripts to write.
+  </Card>
+  <Card title="Custom Branding" icon="paintbrush">
+    Match your brand with custom colors, logos, fonts, and themes — all configured from a single `docs.json` file.
+  </Card>
+  <Card title="Built-in Search" icon="magnifying-glass">
+    Full-text search works out of the box. Your readers can find what they need instantly, with no plugins or third-party integrations required.
+  </Card>
+  <Card title="Responsive Design" icon="mobile">
+    Your documentation looks great on every screen size — desktop, tablet, and mobile — without any extra configuration.
+  </Card>
+</CardGroup>
+
+## How It Works
+
+Getting your docs live with Google Docs is a four-step process:
+
+1. **Write** your documentation as `.mdx` files inside your private git repository.
+2. **Configure** a `docs.json` file at the root of your repo to define navigation, branding, and site settings.
+3. **Push** your changes to your git remote as you normally would.
+4. **Done** — Google Docs automatically detects the push, builds your site, and publishes the latest version.
+
+There's no build command to run locally, no hosting account to set up, and no deployment workflow to maintain. Your repository is the single source of truth.
+
+<Note>
+  Your documentation is private by default — only people you share the link with can access it.
+</Note>
